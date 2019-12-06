@@ -1,6 +1,10 @@
 class SuggestionsController < ApplicationController
+  skip_before_action :verify_authenticity_token
+
   before_action :set_suggestion, only: [:show, :edit, :update, :destroy, :upvote, :downvote, :execute]
   before_action :prepare_team
+
+
 
   def prepare_team
     @team = Team.find(current_user.team_id)
@@ -22,7 +26,7 @@ class SuggestionsController < ApplicationController
     # stock existence should be validated at creation
     @stock = Stock.find_by(ticker: @suggestion.ticker)
     price = nil
-    
+
     # If the stock price is nil (the stock isn't currently active)
     if @stock.price == nil
       res = RestClient.get("https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=" + @stock.ticker + "&apikey=YNKAKVYRW2VHVAV1")
@@ -31,9 +35,9 @@ class SuggestionsController < ApplicationController
     else
       price = @stock.price
     end
-    
+
     if @suggestion.quantity < 0
-      # sell 
+      # sell
 
       @holding = Holding.find_by(team_id: @team.id, stock_id: @stock.id)
       if @holding != nil
@@ -50,7 +54,7 @@ class SuggestionsController < ApplicationController
       else
         redirect_to current_user, notice: 'No such holding.' and return
       end
-    
+
     else
       # buy
       # to_i converts nil to 0, @stock.price may be nil
@@ -61,12 +65,12 @@ class SuggestionsController < ApplicationController
       if res == false
         redirect_to @suggestion, alert: "Insufficient Balance." and return
       end
-      
+
       @holding = Holding.find_by(team_id: @team.id, stock_id: @stock.id)
       if @holding != nil
         @holding.update(quantity: @holding.quantity + @suggestion.quantity)
       else
-        @holding = Holding.create(team_id: @team.id, stock_id: @stock.id, quantity: @suggestion.quantity)
+        @holding = Holding.create(team_id: @team.id, stock_id: @stock.id, ticker: @stock.ticker, quantity: @suggestion.quantity, price: @stock.price, value: @stock.price * @suggestion.quantity)
       end
     end
 
@@ -74,11 +78,11 @@ class SuggestionsController < ApplicationController
     @stock.price = price.to_i
     @stock.save # "save" instead of "update_attribute", since the latter does not update the "updated_at" field
     @stock.touch # "save" only updates "updated_at" field if changes were made, "touch" guarantees "updated_at" is updated
-    
+
     # if the above operations have been successfully executed or the holding to sell doesn't exist
     redirect_to current_user, notice: 'Suggestion was successfully executed.'
     @suggestion.destroy
-    
+
   end
 
   # GET /suggestions/new

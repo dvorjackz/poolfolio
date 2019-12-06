@@ -62,9 +62,17 @@ namespace :update do
             stock.save # "save" instead of "update_attribute", since the latter does not update the "updated_at" field
             stock.touch # "save" only updates "updated_at" field if changes were made, "touch" guarantees "updated_at" is updated
 
+            # Update price in holding (holding is saved later outside the loop)
+            holding.price = stock.price
+
             puts "#{Time.now} - Updated " + stock.ticker + "'s stock price to: " + res_price
           end
         end
+
+        # Update holding value with stock price
+        holding.value = stock.price * holding.quantity
+        puts "!!!!!!!!!!!!!! Updated holdidngs: " + (holding.value).to_s + " !!!!!!!!!!!!!!!!!@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
+        holding.save
 
         # Add up the team's holding values
         new_team_value += holding.quantity * stock.price

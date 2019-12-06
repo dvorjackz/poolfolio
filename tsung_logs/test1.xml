@@ -8,7 +8,7 @@
 
     <!-- Server side setup -->
     <servers>
-        <server host="poolfoliohttpchashing.uzgjd2dkms.us-west-2.elasticbeanstalk.com" port="80" type="tcp"></server>
+        <server host="poolfoliodeploy.uzgjd2dkms.us-west-2.elasticbeanstalk.com" port="80" type="tcp"></server>
     </servers>
 
 
@@ -25,24 +25,24 @@
         <arrivalphase phase="4" duration="30" unit="second">
             <users arrivalrate="8" unit="second"></users>
         </arrivalphase>
-        <!--        <arrivalphase phase="5" duration="30" unit="second">-->
-        <!--            <users arrivalrate="16" unit="second"></users>-->
-        <!--        </arrivalphase>-->
-        <!--        <arrivalphase phase="6" duration="30" unit="second">-->
-        <!--            <users arrivalrate="32" unit="second"></users>-->
-        <!--        </arrivalphase>-->
-        <!--        <arrivalphase phase="7" duration="30" unit="second">-->
-        <!--            <users arrivalrate="64" unit="second"></users>-->
-        <!--        </arrivalphase>-->
-        <!--        <arrivalphase phase="8" duration="30" unit="second">-->
-        <!--            <users arrivalrate="128" unit="second"></users>-->
-        <!--        </arrivalphase>-->
-        <!--        <arrivalphase phase="9" duration="30" unit="second">-->
-        <!--            <users arrivalrate="256" unit="second"></users>-->
-        <!--        </arrivalphase>-->
-        <!--        <arrivalphase phase="10" duration="30" unit="second">-->
-        <!--            <users arrivalrate="512" unit="second"></users>-->
-        <!--        </arrivalphase>-->
+        <arrivalphase phase="5" duration="30" unit="second">
+            <users arrivalrate="16" unit="second"></users>
+        </arrivalphase>
+        <arrivalphase phase="6" duration="30" unit="second">
+            <users arrivalrate="32" unit="second"></users>
+        </arrivalphase>
+        <arrivalphase phase="7" duration="30" unit="second">
+            <users arrivalrate="64" unit="second"></users>
+        </arrivalphase>
+        <arrivalphase phase="8" duration="30" unit="second">
+            <users arrivalrate="128" unit="second"></users>
+        </arrivalphase>
+        <arrivalphase phase="9" duration="30" unit="second">
+            <users arrivalrate="256" unit="second"></users>
+        </arrivalphase>
+        <arrivalphase phase="10" duration="30" unit="second">
+            <users arrivalrate="512" unit="second"></users>
+        </arrivalphase>
     </load>
 
     <options>
@@ -103,7 +103,7 @@
                 </http>
             </request>
 
-            <!--            <thinktime value="2" random="true"></thinktime>-->
+            <thinktime value="2" random="true"></thinktime>
 
             <!--&lt;!&ndash;          User sees the team portfolio, decides for two seconds on each investment-->
             <!--  likes 2, dislikes 2 and makes two sujestions of his own-->
@@ -111,7 +111,7 @@
             <thinktime value="2" random="true"></thinktime>
 
             <request subst="true">
-                <http url='/suggestions/200/like' version='1.1'
+                <http url='/suggestions/5/like' version='1.1'
                       contents="_method=put&amp;authenticity_token=%%_encoded_authenticity_token%%"
                       content_type='application/x-www-form-urlencoded' method='POST'>
                 </http>
@@ -120,7 +120,7 @@
             <thinktime value="2" random="true"></thinktime>
 
             <request subst="true">
-                <http url='/suggestions/201/like' version='1.1'
+                <http url='/suggestions/1/like' version='1.1'
                       contents="_method=put&amp;authenticity_token=%%_encoded_authenticity_token%%"
                       content_type='application/x-www-form-urlencoded' method='POST'>
                 </http>
@@ -129,7 +129,7 @@
             <thinktime value="2" random="true"></thinktime>
 
             <request subst="true">
-                <http url='/suggestions/209/unlike' version='1.1'
+                <http url='/suggestions/9/unlike' version='1.1'
                       contents="_method=put&amp;"
                       content_type='application/x-www-form-urlencoded' method='POST'>
                 </http>
@@ -138,7 +138,7 @@
             <thinktime value="2" random="true"></thinktime>
 
             <request subst="true">
-                <http url='/suggestions/213/unlike' version='1.1'
+                <http url='/suggestions/13/unlike' version='1.1'
                       contents="_method=put&amp;"
                       content_type='application/x-www-form-urlencoded' method='POST'>
                 </http>
@@ -191,7 +191,7 @@
             <thinktime value="2" random="true"></thinktime>
 
             <request subst="true">
-                <http url='/suggestions/206/like' version='1.1'
+                <http url='/suggestions/6/like' version='1.1'
                       contents="_method=put&amp;authenticity_token=%%_encoded_authenticity_token%%"
                       content_type='application/x-www-form-urlencoded' method='POST'>
                 </http>
@@ -209,7 +209,7 @@
             <thinktime value="2" random="true"></thinktime>
 
             <request subst="true">
-                <http url='/suggestions/210/unlike' version='1.1'
+                <http url='/suggestions/10/unlike' version='1.1'
                       contents="_method=put&amp;"
                       content_type='application/x-www-form-urlencoded' method='POST'>
                 </http>
@@ -218,7 +218,7 @@
             <thinktime value="2" random="true"></thinktime>
 
             <request subst="true">
-                <http url='/suggestions/214/unlike' version='1.1'
+                <http url='/suggestions/14/unlike' version='1.1'
                       contents="_method=put&amp;"
                       content_type='application/x-www-form-urlencoded' method='POST'>
                 </http>
@@ -271,7 +271,7 @@
             <thinktime value="2" random="true"></thinktime>
 
             <request subst="true">
-                <http url='/suggestions/207/like' version='1.1'
+                <http url='/suggestions/7/like' version='1.1'
                       contents="_method=put&amp;authenticity_token=%%_encoded_authenticity_token%%"
                       content_type='application/x-www-form-urlencoded' method='POST'>
                 </http>
@@ -280,7 +280,7 @@
             <thinktime value="2" random="true"></thinktime>
 
             <request subst="true">
-                <http url='/suggestions/203/like' version='1.1'
+                <http url='/suggestions/3/like' version='1.1'
                       contents="_method=put&amp;authenticity_token=%%_encoded_authenticity_token%%"
                       content_type='application/x-www-form-urlencoded' method='POST'>
                 </http>
@@ -289,7 +289,7 @@
             <thinktime value="2" random="true"></thinktime>
 
             <request subst="true">
-                <http url='/suggestions/211/unlike' version='1.1'
+                <http url='/suggestions/11/unlike' version='1.1'
                       contents="_method=put&amp;"
                       content_type='application/x-www-form-urlencoded' method='POST'>
                 </http>
@@ -298,7 +298,7 @@
             <thinktime value="2" random="true"></thinktime>
 
             <request subst="true">
-                <http url='/suggestions/215/unlike' version='1.1'
+                <http url='/suggestions/15/unlike' version='1.1'
                       contents="_method=put&amp;"
                       content_type='application/x-www-form-urlencoded' method='POST'>
                 </http>
@@ -364,7 +364,7 @@
             <thinktime value="2" random="true"></thinktime>
 
             <request subst="true">
-                <http url='/suggestions/208/like' version='1.1'
+                <http url='/suggestions/8/like' version='1.1'
                       contents="_method=put&amp;authenticity_token=%%_encoded_authenticity_token%%"
                       content_type='application/x-www-form-urlencoded' method='POST'>
                 </http>
@@ -373,7 +373,7 @@
             <thinktime value="2" random="true"></thinktime>
 
             <request subst="true">
-                <http url='/suggestions/204/like' version='1.1'
+                <http url='/suggestions/4/like' version='1.1'
                       contents="_method=put&amp;authenticity_token=%%_encoded_authenticity_token%%"
                       content_type='application/x-www-form-urlencoded' method='POST'>
                 </http>
@@ -382,7 +382,7 @@
             <thinktime value="2" random="true"></thinktime>
 
             <request subst="true">
-                <http url='/suggestions/212/unlike' version='1.1'
+                <http url='/suggestions/12/unlike' version='1.1'
                       contents="_method=put&amp;"
                       content_type='application/x-www-form-urlencoded' method='POST'>
                 </http>
@@ -391,7 +391,7 @@
             <thinktime value="2" random="true"></thinktime>
 
             <request subst="true">
-                <http url='/suggestions/216/unlike' version='1.1'
+                <http url='/suggestions/16/unlike' version='1.1'
                       contents="_method=put&amp;"
                       content_type='application/x-www-form-urlencoded' method='POST'>
                 </http>

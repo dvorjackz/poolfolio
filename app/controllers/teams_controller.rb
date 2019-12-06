@@ -1,6 +1,10 @@
 class TeamsController < ApplicationController
+  skip_before_action :verify_authenticity_token
+
   before_action :set_team, only: [:show, :edit, :update, :destroy, :join]
   before_action :authenticate_user!, only: [:join, :create, :index]
+
+
   # GET /teams
   # GET /teams.json
   def index

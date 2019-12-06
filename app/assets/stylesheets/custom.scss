@@ -57,6 +57,17 @@ body {
 
 .user-hub {
   background-color: $lynx-white;
+  #paginate{
+    a{
+      color: $river !important;
+      margin-left: 0.5em;
+      margin-right: 0.5em;
+      &:hover{
+        color: $emerald !important;
+        text-decoration: none;
+      }
+    }
+  }
 }
 
 section {

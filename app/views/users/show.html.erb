@@ -37,21 +37,28 @@
 
     <div class="container" >
       <div class="row mt-2" style="height: 40em">
-        <div class="col-2 user-hub m-2 border border-secondary rounded">
+        <div class="col-3 user-hub m-2 border border-secondary rounded">
+
           <h5 class="font-weight-bold mt-1">Rankings</h5>
+
           <div class="d-flex flex-row justify-content-between">
               <div class="pt-1"><u>Team Name</u></div>
               <div class="pt-1"><u>Value</u></div>
           </div>
 
-              <% @teams.each do |team|%>
-                <div class="d-flex flex-row justify-content-between">
-                  <div class=""><%= link_to team_path(team.id), method: :get do %><%= team.name =%><% end %></div>
-                  <div class=""><%= number_to_currency(team.value + team.balance) %></div>
-                </div>
-              <% end %>
+          <% @teams.each do |team|%>
+            <div class="d-flex flex-row justify-content-between">
+              <div class=""><%= link_to team_path(team.id), method: :get do %><%= team.name =%><% end %></div>
+              <div class=""><%= number_to_currency(team.value + team.balance) %></div>
+            </div>
+          <% end %>
+
+          <div class="paginate">
+            <%= will_paginate @teams, :id => 'paginate', :param_name => 'team_page', inner_window: 1, outer_window: 1, :previous_label => '← Prev', :next_label => 'Next →' %>
+          </div>
 
         </div>
+        
         <div class="col mt-2">
             <div class="p-2 bg-info d-flex flex-column rounded" style="height: 40em" >
               <h4 class="font-weight-bold mt-1">Suggestions</h4>
@@ -62,7 +69,7 @@
                     <th>Ticker</th>
                     <th>Quantity</th>
                     <th>Vote</th>
-                    <th>Total Votes</th>
+                    <th>Total</th>
                   </tr>
                 </thead>
 
@@ -108,7 +115,7 @@
 
                 </table>
                 <div class="paginate">
-                  <%= will_paginate @suggestions, :id => 'paginate' %>
+                  <%= will_paginate @suggestions, :id => 'paginate', :param_name => 'suggestion_page' %>
                 </div>
             </div>
             *Sorted by: Total Votes, Creation Date*
@@ -122,28 +129,31 @@
             </div>
           <% else %>
           <div class="col mt-2 p-1">
-          <div class="d-flex flex-column">
-            <table class="fixed_header">
-              <thead>
-                <tr>
-                  <th>Ticker</th>
-                  <th>Quanity</th>
-                  <th>Price</th>
-                  <th>Value</th>
-                </tr>
-              </thead>
-              <tbody>
-                <% @stocks.each do |stock|%>
-                <tr>
-                  <td><%= stock["ticker"] %></td>
-                  <td><%= stock["quantity"] %></td>
-                  <td><%= number_to_currency(stock["price"]) %></td>
-                  <td><%= number_to_currency(stock["total"]) %></td>
-                </tr>
-                <% end %>
-              </tbody>
+            <div class="d-flex flex-column">
+              <table class="fixed_header">
+                <thead>
+                  <tr>
+                    <th>Ticker</th>
+                    <th>Quanity</th>
+                    <th>Price</th>
+                    <th>Value</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% @stocks.each do |stock|%>
+                  <tr>
+                    <td><%= stock["ticker"] %></td>
+                    <td><%= stock["quantity"] %></td>
+                    <td><%= number_to_currency(stock["price"]) %></td>
+                    <td><%= number_to_currency(stock["value"]) %></td>
+                  </tr>
+                  <% end %>
+                </tbody>
               </table>
-          </div>
+              <div class="paginate">
+                <%= will_paginate @stocks, :id => 'paginate', :param_name => 'holding_page' %>
+              </div>
+            </div>
           </div>
           <% end %>
         </div>
