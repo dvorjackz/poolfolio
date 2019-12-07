@@ -5,7 +5,7 @@ Collaborative stock investing where users vote on suggestions to buy/sell shares
     https://docs.google.com/document/d/1evWD6qk7TEPbiDrTsSlK1oq_qJj6Bc8PHwp7SZ4WLc4/edit?usp=sharing
     
 ### Deployment Instructions
-Access EC2 instance: 
+Access EC2 instance (local copy of poolfolio.pem required): 
 ```
 sudo ssh -i poolfolio.pem poolfolio@ec2-34-209-211-32.us-west-2.compute.amazonaws.com 
 ```
