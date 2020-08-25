@@ -1,5 +1,5 @@
 # Poolfolio
-Collaborative stock investing where users vote on suggestions to buy/sell shares of stock. Teams are ranked according to total portfolio value. 5000+ stocks from NYSE, AMEX, and NASDAQ. Quasi-live updates to stocks and portfolios.
+Collaborative stock investing where users vote on suggestions to buy/sell shares of stock. Teams are ranked according to total portfolio value. 5000+ stocks from NYSE, AMEX, and NASDAQ. Quasi-live updates to stocks and portfolios. Built using Ruby on Rails.
 
 ### Master Plan
     https://docs.google.com/document/d/1evWD6qk7TEPbiDrTsSlK1oq_qJj6Bc8PHwp7SZ4WLc4/edit?usp=sharing
